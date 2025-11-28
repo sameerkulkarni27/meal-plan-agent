@@ -1,0 +1,16 @@
+# Root level gitignore
+node_modules/
+dist/
+build/
+.DS_Store
+
+# Frontend specific
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+# Server specific
+server/.env
+server/.venv/
+server/__pycache__/
+server/*.pyc

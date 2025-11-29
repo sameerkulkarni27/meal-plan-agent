@@ -1,0 +1,22 @@
+aiosmtplib==3.0.1
+annotated-types==0.7.0
+anyio==3.7.1
+APScheduler==3.10.4
+click==8.3.1
+dnspython==2.8.0
+email-validator==2.1.0
+fastapi==0.104.1
+h11==0.16.0
+idna==3.11
+-e git+ssh://git@github.com/sameerkulkarni27/meal-plan-agent.git@e133fb5f59247263b64b255b4696e77d66d96a3d#egg=meal_plan_scheduler&subdirectory=server
+pydantic==2.5.0
+pydantic-settings==2.1.0
+pydantic_core==2.14.1
+python-dotenv==1.0.0
+pytz==2025.2
+six==1.17.0
+sniffio==1.3.1
+starlette==0.27.0
+typing_extensions==4.15.0
+tzlocal==5.3.1
+uvicorn==0.24.0

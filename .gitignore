@@ -4,6 +4,13 @@ dist/
 build/
 .DS_Store
 
+# Virtual environments
+agent-env/
+server-env/
+venv/
+env/
+.venv/
+
 # Frontend specific
 frontend/node_modules/
 frontend/dist/
@@ -14,3 +21,10 @@ server/.env
 server/.venv/
 server/__pycache__/
 server/*.pyc
+
+# Agent specific
+server/agent/__pycache__/
+*.pyc
+
+# Environment files
+.env

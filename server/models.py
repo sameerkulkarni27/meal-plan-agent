@@ -10,6 +10,8 @@ class ScheduleEventRequest(BaseModel):
     time: str  # ISO format: "2024-12-27T14:30:00" or time format "14:30:00"
     repeated: Literal["daily", "none"] = "none"
     email: EmailStr  # User's email address for notifications
+    meal_name: str 
+    meal_type: str
 
 
 class ScheduleEventResponse(BaseModel):

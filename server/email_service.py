@@ -5,7 +5,12 @@ from config import settings
 import asyncio
 
 
-async def send_email_notification(user_id: str, recipient_email: str):
+async def send_email_notification(
+    user_id: str,
+    recipient_email: str,
+    meal_name: str,
+    meal_type: str
+):
     """
     Send an email notification to the user.
 
@@ -31,11 +36,12 @@ async def send_email_notification(user_id: str, recipient_email: str):
         html = f"""\
         <html>
           <body>
-            <h2>Meal Plan Notification</h2>
-            <p>Hello!</p>
+            <h2>Hello!</h2>
             <p>This is your scheduled meal plan notification.</p>
             <p><strong>User ID:</strong> {user_id}</p>
-            <p>Check your meal plan and make any updates as needed.</p>
+
+            <p>It's time for your {meal_type}!</p>
+            <h3>{meal_name}</h3>
             <br>
             <p>Best regards,<br>Meal Plan Agent</p>
           </body>
@@ -63,14 +69,24 @@ async def send_email_notification(user_id: str, recipient_email: str):
         return False
 
 
-def send_email_notification_sync(user_id: str, recipient_email: str):
+def send_email_notification_sync(
+    user_id: str,
+    recipient_email: str,
+    meal_name: str,
+    meal_type: str
+):
     """
     Synchronous wrapper for sending email notifications.
     Used by APScheduler which doesn't support async directly.
     """
     try:
         print(f"[EMAIL] Starting to send notification to {recipient_email} for user {user_id}")
-        asyncio.run(send_email_notification(user_id, recipient_email))
+        asyncio.run(send_email_notification(
+            user_id,
+            recipient_email,
+            meal_name,
+            meal_type
+        ))
     except Exception as e:
         print(f"[EMAIL ERROR] Failed to send: {str(e)}")
         import traceback

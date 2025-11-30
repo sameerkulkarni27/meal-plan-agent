@@ -23,7 +23,15 @@ def shutdown_scheduler():
         print("Scheduler shut down")
 
 
-def add_event(user_id: str, time_str: str, repeated: str, notification_func, email: str):
+def add_event(
+    user_id: str,
+    time_str: str,
+    repeated: str,
+    notification_func,
+    email: str,
+    meal_name: str,
+    meal_type: str
+):
     """
     Add a scheduled event to the scheduler.
 
@@ -48,14 +56,16 @@ def add_event(user_id: str, time_str: str, repeated: str, notification_func, ema
             time_parts = time_str.split(":")
             hour = int(time_parts[0])
             minute = int(time_parts[1]) if len(time_parts) > 1 else 0
-            trigger = CronTrigger(hour=hour, minute=minute)
-            scheduled_time = f"{hour:02d}:{minute:02d}:00"
+            second = int(time_parts[2]) if len(time_parts) > 2 else 0
+
+            trigger = CronTrigger(hour=hour, minute=minute, second=second)
+            scheduled_time = f"{hour:02d}:{minute:02d}:{second:02d}"
 
         # Add job to scheduler
         job = scheduler.add_job(
             notification_func,
             trigger=trigger,
-            args=[user_id, email],
+            args=[user_id, email, meal_name, meal_type],
             id=event_id,
             name=f"Notification for {user_id}",
             replace_existing=False,
@@ -67,6 +77,9 @@ def add_event(user_id: str, time_str: str, repeated: str, notification_func, ema
             "email": email,
             "time": scheduled_time,
             "repeated": repeated,
+            "meal_name": meal_name,    
+            "meal_type": meal_type,
+
             "created_at": datetime.now().isoformat(),
             "job_id": event_id,
         }

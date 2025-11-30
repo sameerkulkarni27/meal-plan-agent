@@ -55,6 +55,8 @@ async def schedule_event(request: ScheduleEventRequest):
             repeated=request.repeated,
             notification_func=send_email_notification_sync,
             email=request.email,
+            meal_name=request.meal_name,
+            meal_type=request.meal_type
         )
 
         return ScheduleEventResponse(

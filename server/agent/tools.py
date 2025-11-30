@@ -40,7 +40,9 @@ async def schedule_meal_reminder(
                 "user_id": user_id,
                 "time": time,
                 "repeated": repeated,
-                "email": email
+                "email": email,
+                "meal_name": meal_name,
+                "meal_type": meal_type
             }
             
             response = await client.post(
